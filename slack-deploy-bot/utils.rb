@@ -5,13 +5,16 @@ module SlackDeployBot
     class Subprocess
       def initialize(cmd, &block)
         Open3.popen3(cmd) do |stdin, stdout, stderr, thread|
+          # exit_status = thread.value
           { :out => stdout, :err => stderr }.each do |key, stream|
             Thread.new do
               until (line = stream.gets).nil? do
                 if key == :out
                   yield line, nil, thread if block_given?
+                # elsif exit_status.success?
+                #   yield line, nil, thread if block_given?
                 else
-                  yield nil, line, thread if block_given?
+                  yield line, nil, thread if block_given?
                 end
               end
             end

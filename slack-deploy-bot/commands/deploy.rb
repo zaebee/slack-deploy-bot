@@ -33,7 +33,7 @@ module SlackDeployBot
           client.send(:logger).info stdout
           if stdout =~ /failed\:/ || stdout =~ /command not found/
             error_happened = true
-            say_error(client, data, "Deploy failed with error: #{stdout}. More info at logs/deploybot.log")
+            say_error(client, data, "Deploy failed with stdout: #{stdout}. More info at logs/deploybot.log")
           end
         elsif stderr && !stderr.empty?
           client.send(:logger).error stderr
