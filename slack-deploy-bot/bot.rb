@@ -33,6 +33,12 @@ module SlackDeployBot
       command 'changelog' do
         desc "Shows changelog against #{SlackDeployBot::MASTER_BRANCH}: *changelog (#{SlackDeployBot.apps.keys.join('|')})#branch_or_tag*"
       end
+      command 'pull' do
+        desc "Command format is: *pull|вытяни airtable stage|prod*"
+      end
+      command 'push' do
+        desc "Command format is: *push|толкни airtable stage|prod*"
+      end
     end
   end
 end
