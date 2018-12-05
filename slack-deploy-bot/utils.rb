@@ -50,7 +50,7 @@ module SlackDeployBot
       end
 
       def checkout(branch)
-        system "cd #{base_path}; git checkout #{branch}", out: @output_to
+        system "cd #{base_path}; git checkout -B #{branch} origin/#{branch}", out: @output_to
       end
 
       def changelog(branch, against:)
